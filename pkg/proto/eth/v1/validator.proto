@@ -14,7 +14,7 @@ message ValidatorData {
     google.protobuf.UInt64Value activation_eligibility_epoch = 5 [ json_name = "activation_eligibility_epoch" ];
     google.protobuf.UInt64Value activation_epoch = 6 [ json_name = "activation_epoch" ];
     google.protobuf.UInt64Value exit_epoch = 7 [ json_name = "exit_epoch" ];
-    google.protobuf.UInt64Value withdrawable_epoch = 8 [ json_name = "withdrawable_epoch" ];
+    google.protobuf.UInt64Value principal_balance = 8 [ json_name = "principal_balance" ];
 }
 
 message Validator {

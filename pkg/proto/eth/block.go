@@ -25,7 +25,7 @@ func NewEventBlockV2FromVersionSignedBeaconBlock(block *spec.VersionedSignedBeac
 		data = NewEventBlockFromCapella(block)
 	case spec.DataVersionDeneb:
 		data = NewEventBlockFromDeneb(block)
-	case spec.DataVersionElectra:
+	case spec.DataVersionAlpaca:
 		data = NewEventBlockFromElectra(block)
 	default:
 		return nil, fmt.Errorf("unsupported block version: %v", block.Version)
@@ -198,7 +198,6 @@ func NewEventBlockFromCapella(block *spec.VersionedSignedBeaconBlock) *v2.EventB
 						Transactions:  getTransactions(block.Capella.Message.Body.ExecutionPayload.Transactions),
 						Withdrawals:   v1.NewWithdrawalsFromCapella(block.Capella.Message.Body.ExecutionPayload.Withdrawals),
 					},
-					BlsToExecutionChanges: v2.NewBLSToExecutionChangesFromCapella(block.Capella.Message.Body.BLSToExecutionChanges),
 				},
 			},
 		},
@@ -234,10 +233,6 @@ func NewEventBlockFromDeneb(block *spec.VersionedSignedBeaconBlock) *v2.EventBlo
 					Attestations:      v1.NewAttestationsFromPhase0(block.Deneb.Message.Body.Attestations),
 					Deposits:          v1.NewDepositsFromPhase0(block.Deneb.Message.Body.Deposits),
 					VoluntaryExits:    v1.NewSignedVoluntaryExitsFromPhase0(block.Deneb.Message.Body.VoluntaryExits),
-					SyncAggregate: &v1.SyncAggregate{
-						SyncCommitteeBits:      fmt.Sprintf("0x%x", block.Deneb.Message.Body.SyncAggregate.SyncCommitteeBits),
-						SyncCommitteeSignature: block.Deneb.Message.Body.SyncAggregate.SyncCommitteeSignature.String(),
-					},
 					ExecutionPayload: &v1.ExecutionPayloadDeneb{
 						ParentHash:    block.Deneb.Message.Body.ExecutionPayload.ParentHash.String(),
 						FeeRecipient:  block.Deneb.Message.Body.ExecutionPayload.FeeRecipient.String(),
@@ -257,7 +252,6 @@ func NewEventBlockFromDeneb(block *spec.VersionedSignedBeaconBlock) *v2.EventBlo
 						BlobGasUsed:   &wrapperspb.UInt64Value{Value: block.Deneb.Message.Body.ExecutionPayload.BlobGasUsed},
 						ExcessBlobGas: &wrapperspb.UInt64Value{Value: block.Deneb.Message.Body.ExecutionPayload.ExcessBlobGas},
 					},
-					BlsToExecutionChanges: v2.NewBLSToExecutionChangesFromCapella(block.Deneb.Message.Body.BLSToExecutionChanges),
 					BlobKzgCommitments:    kzgCommitments,
 				},
 			},
@@ -294,10 +288,6 @@ func NewEventBlockFromElectra(block *spec.VersionedSignedBeaconBlock) *v2.EventB
 					Attestations:      v1.NewAttestationsFromElectra(block.Electra.Message.Body.Attestations),
 					Deposits:          v1.NewDepositsFromPhase0(block.Electra.Message.Body.Deposits),
 					VoluntaryExits:    v1.NewSignedVoluntaryExitsFromPhase0(block.Electra.Message.Body.VoluntaryExits),
-					SyncAggregate: &v1.SyncAggregate{
-						SyncCommitteeBits:      fmt.Sprintf("0x%x", block.Electra.Message.Body.SyncAggregate.SyncCommitteeBits),
-						SyncCommitteeSignature: block.Electra.Message.Body.SyncAggregate.SyncCommitteeSignature.String(),
-					},
 					ExecutionPayload: &v1.ExecutionPayloadElectra{
 						ParentHash:    block.Electra.Message.Body.ExecutionPayload.ParentHash.String(),
 						FeeRecipient:  block.Electra.Message.Body.ExecutionPayload.FeeRecipient.String(),
@@ -317,7 +307,6 @@ func NewEventBlockFromElectra(block *spec.VersionedSignedBeaconBlock) *v2.EventB
 						BlobGasUsed:   &wrapperspb.UInt64Value{Value: block.Electra.Message.Body.ExecutionPayload.BlobGasUsed},
 						ExcessBlobGas: &wrapperspb.UInt64Value{Value: block.Electra.Message.Body.ExecutionPayload.ExcessBlobGas},
 					},
-					BlsToExecutionChanges: v2.NewBLSToExecutionChangesFromCapella(block.Electra.Message.Body.BLSToExecutionChanges),
 					BlobKzgCommitments:    kzgCommitments,
 				},
 			},

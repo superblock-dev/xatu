@@ -9,7 +9,6 @@ import (
 
 type Config struct {
 	AttesterSlashingConfig      v2.AttesterSlashingDeriverConfig            `yaml:"attesterSlashing"`
-	BLSToExecutionConfig        v2.BLSToExecutionChangeDeriverConfig        `yaml:"blsToExecutionChange"`
 	DepositConfig               v2.DepositDeriverConfig                     `yaml:"deposit"`
 	ExecutionTransactionConfig  v2.ExecutionTransactionDeriverConfig        `yaml:"executionTransaction"`
 	ProposerSlashingConfig      v2.ProposerSlashingDeriverConfig            `yaml:"proposerSlashing"`

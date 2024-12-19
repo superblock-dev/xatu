@@ -276,7 +276,7 @@ func (b *BeaconValidatorsDeriver) createEventFromValidators(ctx context.Context,
 				ActivationEpoch:            wrapperspb.UInt64(uint64(validator.Validator.ActivationEpoch)),
 				ActivationEligibilityEpoch: wrapperspb.UInt64(uint64(validator.Validator.ActivationEligibilityEpoch)),
 				ExitEpoch:                  wrapperspb.UInt64(uint64(validator.Validator.ExitEpoch)),
-				WithdrawableEpoch:          wrapperspb.UInt64(uint64(validator.Validator.WithdrawableEpoch)),
+				PrincipalBalance:          	wrapperspb.UInt64(uint64(validator.Validator.PrincipalBalance)),
 			},
 		})
 	}

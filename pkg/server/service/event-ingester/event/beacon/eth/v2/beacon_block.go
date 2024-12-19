@@ -85,7 +85,7 @@ func (b *BeaconBlock) Filter(ctx context.Context) bool {
 	case spec.DataVersionDeneb.String():
 		//nolint:staticcheck // Handled by v2
 		hash = data.EthV2BeaconBlock.Message.(*v2.EventBlock_DenebBlock).DenebBlock.StateRoot
-	case spec.DataVersionElectra.String():
+	case spec.DataVersionAlpaca.String():
 		//nolint:staticcheck // Handled by v2
 		hash = data.EthV2BeaconBlock.Message.(*v2.EventBlock_ElectraBlock).ElectraBlock.StateRoot
 	default:

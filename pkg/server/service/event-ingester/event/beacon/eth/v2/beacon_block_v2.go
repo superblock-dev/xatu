@@ -83,7 +83,7 @@ func (b *BeaconBlockV2) Filter(ctx context.Context) bool {
 		hash = data.EthV2BeaconBlockV2.Message.(*v2.EventBlockV2_CapellaBlock).CapellaBlock.StateRoot
 	case spec.DataVersionDeneb.String():
 		hash = data.EthV2BeaconBlockV2.Message.(*v2.EventBlockV2_DenebBlock).DenebBlock.StateRoot
-	case spec.DataVersionElectra.String():
+	case spec.DataVersionAlpaca.String():
 		hash = data.EthV2BeaconBlockV2.Message.(*v2.EventBlockV2_ElectraBlock).ElectraBlock.StateRoot
 	default:
 		b.log.Error(fmt.Errorf("unknown version: %s", version))
