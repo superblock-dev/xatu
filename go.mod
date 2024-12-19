@@ -6,7 +6,7 @@ toolchain go1.22.1
 
 replace github.com/probe-lab/hermes => github.com/ethpandaops/hermes v0.0.0-20240919054858-186de8ab9894
 
-replace github.com/attestantio/go-eth2-client => github.com/attestantio/go-eth2-client v0.21.12-0.20241014214053-759b0ace2e43
+replace github.com/attestantio/go-eth2-client => github.com/superblock-dev/go-eth2-client v0.0.0-20241205035224-1b2ed5dec7e9
 
 require (
 	github.com/IBM/sarama v1.43.0
@@ -20,7 +20,7 @@ require (
 	github.com/ethpandaops/beacon v0.42.0
 	github.com/ethpandaops/ethcore v0.0.0-20240422023000-2a5727b18756
 	github.com/ethpandaops/ethwallclock v0.3.0
-	github.com/ferranbt/fastssz v0.1.3
+	github.com/ferranbt/fastssz v0.1.4
 	github.com/go-co-op/gocron v1.27.1
 	github.com/golang/protobuf v1.5.4
 	github.com/golang/snappy v0.0.5-0.20220116011046-fa5810519dcb
@@ -101,6 +101,7 @@ require (
 	github.com/eapache/go-xerial-snappy v0.0.0-20230731223053-c322873962e3 // indirect
 	github.com/eapache/queue v1.1.0 // indirect
 	github.com/elastic/gosigar v0.14.3 // indirect
+	github.com/emicklei/dot v1.6.2 // indirect
 	github.com/ethereum/c-kzg-4844 v1.0.0 // indirect
 	github.com/ethereum/go-verkle v0.1.1-0.20240829091221-dffa7562dbe9 // indirect
 	github.com/fatih/color v1.16.0 // indirect
