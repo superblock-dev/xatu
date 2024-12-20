@@ -34,8 +34,6 @@ var (
 	TypeBeaconETHV1EventsVoluntaryExitV2        Type = v1.EventsVoluntaryExitV2Type
 	TypeBeaconETHV1EventsAttestation            Type = v1.EventsAttestationType
 	TypeBeaconETHV1EventsAttestationV2          Type = v1.EventsAttestationV2Type
-	TypeBeaconETHV1EventsContributionAndProof   Type = v1.EventsContributionAndProofType
-	TypeBeaconETHV1EventsContributionAndProofV2 Type = v1.EventsContributionAndProofV2Type
 	TypeMempoolTransaction                      Type = mempool.TransactionType
 	TypeMempoolTransactionV2                    Type = mempool.TransactionV2Type
 	TypeBeaconETHV2BeaconBlock                  Type = v2.BeaconBlockType
@@ -51,7 +49,6 @@ var (
 	TypeBeaconEthV2BeaconBlockVoluntaryExit     Type = v2.BeaconBlockVoluntaryExitType
 	TypeBeaconEthV2BeaconBlockDeposit           Type = v2.BeaconBlockDepositType
 	TypeBeaconEthV2BeaconExecutionTransaction   Type = v2.BeaconBlockExecutionTransactionType
-	TypeBeaconEthV2BeaconBLSToExecutionChange   Type = v2.BeaconBlockBLSToExecutionChangeType
 	TypeBeaconEthV2BeaconWithdrawal             Type = v2.BeaconBlockWithdrawalType
 	TypeBlockprintBlockClassification           Type = blockprint.BlockClassificationType
 	TypeBeaconETHV1EventsBlobSidecar            Type = v1.EventsBlobSidecarType
@@ -143,12 +140,6 @@ func NewEventRouter(log logrus.FieldLogger, cache store.Cache, geoipProvider geo
 	router.RegisterHandler(TypeBeaconETHV1EventsVoluntaryExitV2, func(event *xatu.DecoratedEvent, router *EventRouter) (Event, error) {
 		return v1.NewEventsVoluntaryExitV2(router.log, event), nil
 	})
-	router.RegisterHandler(TypeBeaconETHV1EventsContributionAndProof, func(event *xatu.DecoratedEvent, router *EventRouter) (Event, error) {
-		return v1.NewEventsContributionAndProof(router.log, event), nil
-	})
-	router.RegisterHandler(TypeBeaconETHV1EventsContributionAndProofV2, func(event *xatu.DecoratedEvent, router *EventRouter) (Event, error) {
-		return v1.NewEventsContributionAndProofV2(router.log, event), nil
-	})
 	router.RegisterHandler(TypeMempoolTransaction, func(event *xatu.DecoratedEvent, router *EventRouter) (Event, error) {
 		return mempool.NewTransaction(router.log, event), nil
 	})
@@ -193,9 +184,6 @@ func NewEventRouter(log logrus.FieldLogger, cache store.Cache, geoipProvider geo
 	})
 	router.RegisterHandler(TypeBeaconEthV2BeaconExecutionTransaction, func(event *xatu.DecoratedEvent, router *EventRouter) (Event, error) {
 		return v2.NewBeaconBlockExecutionTransaction(router.log, event), nil
-	})
-	router.RegisterHandler(TypeBeaconEthV2BeaconBLSToExecutionChange, func(event *xatu.DecoratedEvent, router *EventRouter) (Event, error) {
-		return v2.NewBeaconBlockBLSToExecutionChange(router.log, event), nil
 	})
 	router.RegisterHandler(TypeBeaconEthV2BeaconWithdrawal, func(event *xatu.DecoratedEvent, router *EventRouter) (Event, error) {
 		return v2.NewBeaconBlockWithdrawal(router.log, event), nil
