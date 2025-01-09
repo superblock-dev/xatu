@@ -41,6 +41,18 @@ func NewBeaconNode(ctx context.Context, name string, config *Config, log logrus.
 	opts.HealthCheck.Interval.Duration = time.Second * 3
 	opts.HealthCheck.SuccessfulResponses = 1
 
+	// Remove `contribution_and_proof` from the default subscriptions
+	filteredBeaconSubscriptionTopics := make(beacon.EventTopics, 0)
+	for _, topic := range opts.BeaconSubscription.Topics {
+		if topic != "contribution_and_proof" {
+			filteredBeaconSubscriptionTopics = append(filteredBeaconSubscriptionTopics, topic)
+		}
+	}
+	opts.BeaconSubscription = beacon.BeaconSubscriptionOptions{
+		Enabled: true,
+		Topics:  filteredBeaconSubscriptionTopics,
+	}
+
 	node := beacon.NewNode(log, &beacon.Config{
 		Name:    name,
 		Addr:    config.BeaconNodeAddress,
